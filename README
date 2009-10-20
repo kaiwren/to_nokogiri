@@ -1,0 +1,1 @@
+Modification to ActiveSupport Hash extensions implementing a version of to_xml that uses Nokogiri::XML::Builder instead of Builder::XmlMarkup
