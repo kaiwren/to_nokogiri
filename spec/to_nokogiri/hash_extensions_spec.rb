@@ -231,10 +231,26 @@ EOXML
     ActiveSupport::XmlMini.backend.should == ActiveSupport::XmlMini_REXML
     @standard_deserialised_hash = Hash.from_xml serialised_entity
     @standard_serialised_hash = @standard_deserialised_hash.to_xml
+    
+    @nested_deserialised_hash = Hash.from_xml serialised_nested_entity
+    @nested_serialised_hash = @nested_deserialised_hash.to_xml
+    
+    @complex_deserialised_hash = Hash.from_xml serialised_collection
+    @complex_serialised_hash = @complex_deserialised_hash.to_xml
+    
+    Hash.send(:include, ToNokogiri::HashExtensions)
+    Array.send(:include, ToNokogiri::ArrayExtensions)
   end
   
-  it "should serialise xml the same as Builder::XmlMarkup" do
-    Hash.send(:include, ToNokogiri::HashExtensions)
+  it "should serialise simple xml the same as Builder::XmlMarkup" do
     @standard_deserialised_hash.to_xml(:dasherize => true).should == @standard_serialised_hash
+  end
+  
+  it "should serialise xml with a nested array the same as Builder::XmlMarkup" do
+    @nested_deserialised_hash.to_xml(:dasherize => true).should == @nested_serialised_hash
+  end
+  
+  it "should serialise complex xml with a collections and nested arrays and hashes the same as Builder::XmlMarkup" do
+    @complex_deserialised_hash.to_xml(:dasherize => true).should == @complex_serialised_hash
   end
 end

@@ -27,3 +27,4 @@ module ToNokogiri  #:nodoc:
 end
 
 require "#{ToNokogiri::Root}/to_nokogiri/hash_extensions"
+require "#{ToNokogiri::Root}/to_nokogiri/array_extensions"

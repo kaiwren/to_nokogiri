@@ -2,7 +2,7 @@ module ToNokogiri
   module HashExtensions
     def to_xml(options = {})
       options = options.dup
-      options[:indent] ||= 2
+      # options[:indent] ||= 2
       options[:encoding] ||= 'UTF-8'
       options.reverse_merge!({ :builder => Nokogiri::XML::Builder.new(:encoding => options[:encoding]),
       :root => "hash" })
