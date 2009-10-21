@@ -8,10 +8,12 @@
 
 require 'rubygems'
 gem 'activesupport', '>= 2.3.2'
+gem 'activerecord', '>= 2.3.2'
 gem 'nokogiri', '>= 1.3.3'
 
 require 'logger'
 require 'active_support'
+require 'active_record'
 require 'nokogiri'
 
 module ToNokogiri  #:nodoc:
@@ -28,3 +30,8 @@ end
 
 require "#{ToNokogiri::Root}/to_nokogiri/hash_extensions"
 require "#{ToNokogiri::Root}/to_nokogiri/array_extensions"
+require "#{ToNokogiri::Root}/to_nokogiri/active_record_extensions"
+require "#{ToNokogiri::Root}/to_nokogiri/nokogiri_extensions"
+
+Nokogiri::XML::Builder.send :include, ToNokogiri::NokogiriExtensions::XmlExtensions::BuilderExtensions
+ActiveRecord::XmlSerializer.send(:include, ToNokogiri::ActiveRecordExtensions::XmlSerializerExtensions)
