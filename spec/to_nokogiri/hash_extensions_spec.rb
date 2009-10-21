@@ -230,10 +230,11 @@ EOXML
   before :all do
     ActiveSupport::XmlMini.backend.should == ActiveSupport::XmlMini_REXML
     @standard_deserialised_hash = Hash.from_xml serialised_entity
+    @standard_serialised_hash = @standard_deserialised_hash.to_xml
   end
   
   it "should serialise xml the same as Builder::XmlMarkup" do
     Hash.send(:include, ToNokogiri::HashExtensions)
-    @standard_deserialised_hash.to_xml.should == serialised_entity
+    @standard_deserialised_hash.to_xml(:dasherize => true).should == @standard_serialised_hash
   end
 end
