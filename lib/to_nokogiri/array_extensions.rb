@@ -23,10 +23,10 @@ module ToNokogiri
 
       xml = options[:builder]
       if empty?
-        xml.send(root, options[:skip_types] ? {} : {:type => "array"})
+        xml.tag!(root, options[:skip_types] ? {} : {:type => "array"})
       else
         array = self
-        xml.send(root, options[:skip_types] ? {} : {:type => "array"}) {
+        xml.tag!(root, options[:skip_types] ? {} : {:type => "array"}) {
           yield xml if block_given?
           # each { |e| e.to_xml(opts.merge({ :skip_instruct => true })) }
           array.each { |e| e.to_xml(opts) }

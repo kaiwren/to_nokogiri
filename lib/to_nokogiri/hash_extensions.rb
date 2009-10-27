@@ -42,7 +42,7 @@ module ToNokogiri
                 attributes[:nil] = true
               end
 
-              options[:builder].send("#{key}_",
+              options[:builder].tag!("#{key}_",
               ActiveSupport::CoreExtensions::Hash::Conversions::XML_FORMATTING[type_name] ? ActiveSupport::CoreExtensions::Hash::Conversions::XML_FORMATTING[type_name].call(value) : value,
               attributes
               )
