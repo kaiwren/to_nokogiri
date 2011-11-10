@@ -1,17 +1,15 @@
 require 'rubygems'
-gem 'rspec'
-require 'rake'
-require 'spec'
-require 'spec/rake/spectask'
+require 'bundler'
+Bundler.setup
+require 'rspec/core/rake_task'
 
 desc 'Default: run spec tests.'
-task :default => :spec
+task :default => 'spec'
 
-desc "Run all specs"
-Spec::Rake::SpecTask.new(:spec) do |task|
-  task.spec_files = FileList['spec/to_nokogiri/**/*_spec.rb']
-  task.spec_opts = ['--options', 'spec/spec.opts']
+RSpec::Core::RakeTask.new(:spec) do |task|
+  task.pattern = 'spec/to_nokogiri/**/*_spec.rb'
 end
+
 
 desc 'Benchmark xml (de)serialisation using a backend specified by BACKEND' 
 task :benchmark do

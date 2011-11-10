@@ -1,1 +1,1 @@
-require "#{File.dirname(__FILE__)}/active_record_extensions/xml_serializer_extensions"
+require "to_nokogiri/active_record_extensions/xml_serializer_extensions"

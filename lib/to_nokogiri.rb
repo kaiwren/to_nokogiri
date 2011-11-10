@@ -6,19 +6,12 @@
 # is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-require 'rubygems'
-gem 'activesupport', '>= 2.3.2'
-gem 'activerecord', '>= 2.3.2'
-gem 'nokogiri', '>= 1.3.3'
-
 require 'logger'
 require 'active_support'
 require 'active_record'
 require 'nokogiri'
 
 module ToNokogiri  #:nodoc:
-  Root = File.dirname(__FILE__)
-
   def self.logger=(logger)
     @logger = logger
   end
@@ -28,10 +21,10 @@ module ToNokogiri  #:nodoc:
   end
 end
 
-require "#{ToNokogiri::Root}/to_nokogiri/hash_extensions"
-require "#{ToNokogiri::Root}/to_nokogiri/array_extensions"
-require "#{ToNokogiri::Root}/to_nokogiri/active_record_extensions"
-require "#{ToNokogiri::Root}/to_nokogiri/nokogiri_extensions"
+require "to_nokogiri/hash_extensions"
+require "to_nokogiri/array_extensions"
+require "to_nokogiri/active_record_extensions"
+require "to_nokogiri/nokogiri_extensions"
 
 Nokogiri::XML::Builder.send :include, ToNokogiri::NokogiriExtensions::XmlExtensions::BuilderExtensions
 ActiveRecord::XmlSerializer.send(:include, ToNokogiri::ActiveRecordExtensions::XmlSerializerExtensions)
